@@ -38,14 +38,13 @@ abbr {
 }
 
 .wrap {
-  margin: 100px auto 0;
+  margin: 100px auto;
   position: relative;
   min-width: 1100px;
   width: 1100px;
-  height: 500px;
+  min-height: 500px;
   border: 1px solid #ccc;
   overflow: hidden;
-  box-sizing: border-box;
 }
 
 .wrap .cover {
@@ -54,7 +53,6 @@ abbr {
   top: 0;
   width: 100%;
   height: 100%;
-  background: #fff;
   z-index: 10;
 }
 
@@ -66,59 +64,30 @@ abbr {
   line-height: 1;
 }
 
-.wrap .game-board {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 20px;
-  width: 400px;
-  height: 100%;
-  color: #fff;
-  background-color: #000;
-  line-height: 1;
+.wrap .game-info {
+  display: inline-block;
+  padding: 100px;
+  width: 100%;
+  font-size: 20px;
+  vertical-align: top;
   box-sizing: border-box;
 }
 
-.wrap .game-board abbr {
+.wrap .game-info p>span{
   display: inline-block;
-  width: 50px;
-  font-size: 40px;
-  line-height: 40px;
-}
-
-.wrap .game-board>p {
-  margin-top: 20px;
-  font-size: 0;
+  padding: 10px;
   font-weight: bold;
 }
 
-.wrap .game-board>p:first-child {
-  margin-top: 0;
-}
-
-.wrap .game-board .count>span {
-  display: inline-block;
-  margin-left: 10px;
-  width: 40px;
-  height: 40px;
-  background: #fff;
-  border-radius: 50%;
-  vertical-align: top;
-}
-
-.wrap .game-board .count>span:first-child {
-  margin-left: 0;
-}
-
-.wrap .game-board .ball .count>.on {
+.wrap .game-info .bg-ball{
   background: #69bd46;
 }
 
-.wrap .game-board .strike .count>.on {
+.wrap .game-info .bg-strike{
   background: #f6ec13;
 }
 
-.wrap .game-board .out .count>.on {
+.wrap .game-info .bg-out{
   background: #ee1f25;
 }
 
