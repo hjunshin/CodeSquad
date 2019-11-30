@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="utf-8">
+  <title>코드스쿼드 온라인 테스트 1단계: 간단 야구 게임 구현하기</title>
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+  <div class="wrap">
+
+    <div class="cover">
+      <h1 class="game-title">야구 게임</h1>
+      <button type="button" id="btn-game-start" onclick="gameStart();">게임 시작</button>
+    </div>
+
+    <div class="game-info"></div>
+
+    <div class="game-board">
+      <p class="ball">
+        <abbr title="ball">B</abbr>
+        <span class="count">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </p>
+      <p class="strike">
+        <abbr title="strike">S</abbr>
+        <span class="count">
+          <span></span>
+          <span></span>
+        </span>
+      </p>
+      <p class="out">
+        <abbr title="out">O</abbr>
+        <span class="count">
+          <span></span>
+          <span></span>
+        </span>
+      </p>
+    </div>
+
+  </div>
+
+  <script src="./js/baseball.js"></script>
+</body>
+
+</html>
