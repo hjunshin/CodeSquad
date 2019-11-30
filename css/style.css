@@ -73,21 +73,21 @@ abbr {
   box-sizing: border-box;
 }
 
-.wrap .game-info p>span{
+.wrap .game-info p>span {
   display: inline-block;
   padding: 10px;
   font-weight: bold;
 }
 
-.wrap .game-info .bg-ball{
+.wrap .game-info .bg-ball {
   background: #69bd46;
 }
 
-.wrap .game-info .bg-strike{
+.wrap .game-info .bg-strike {
   background: #f6ec13;
 }
 
-.wrap .game-info .bg-out{
+.wrap .game-info .bg-out {
   background: #ee1f25;
 }
 
