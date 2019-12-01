@@ -30,7 +30,7 @@ var gameInfo = document.querySelector(".game-info");
 function gameStart() {
 
   document.querySelector(".cover").style.display = "none";
-  gameInfo.innerHTML += '<p>' + gameMsg.start + " !" + '</p>';
+  gameInfo.innerHTML += '<p>' + gameMsg.start + ' !</p>';
 
   if (total.out === 3) {
     gameOver();
@@ -54,7 +54,7 @@ function countReset() {
 }
 
 function printMsg(msg) {
-  gameInfo.innerHTML += '<p>' + msg + " !" + '</p>';
+  gameInfo.innerHTML += '<p>' + msg + ' !</p>';
   gameInfo.innerHTML += '<p>' + '<span class="bg-ball">' + total.ball + '<abbr title="ball">B</abbr></span>' + '<span class="bg-strike">' + total.strike + '<abbr title="strike">S</abbr></span>' + '<span class="bg-out">' + total.out + '<abbr title="out">O</abbr></span>' + '</p><br>';
 }
 
@@ -91,7 +91,7 @@ function ballCount() {
 
       if (total.ball === 4) {
         total.hit = ++total.hit;
-        gameInfo.innerHTML += '<p>' + gameMsg.balls + " !" + '</p>';
+        gameInfo.innerHTML += '<p>' + gameMsg.balls + ' !</p>';
         countReset();
         enterBatter();
         ballCount();
@@ -117,7 +117,7 @@ function ballCount() {
     case gameMsg.hit:
 
       total.hit = ++total.hit;
-      gameInfo.innerHTML += '<p>' + gameMsg.hit + " !" + '</p>';
+      gameInfo.innerHTML += '<p>' + gameMsg.hit + ' !</p>';
       countReset();
       enterBatter();
       ballCount();
