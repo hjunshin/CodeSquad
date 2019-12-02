@@ -3,48 +3,141 @@
 
 <head>
   <meta charset="utf-8">
-  <title>코드스쿼드 온라인 테스트 1단계: 간단 야구 게임 구현하기</title>
+  <title>코드스쿼드 온라인 테스트 2단계: 팀데이터 입력 및 시합 기능 구현</title>
   <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
 
   <div class="wrap">
+    <h1>신나는 야구 시합</h1>
 
-    <div class="cover">
-      <h1 class="game-title">야구 게임</h1>
-      <button type="button" id="btn-game-start" onclick="gameStart();">게임 시작</button>
+    <div class="lineup-entry">
+      <p>1. 라인업 입력</p>
+      <div class="lineup away">
+        <p><label for="away-team">원정팀 이름을 입력하세요<input type="text" id="away-team" value="키움 히어로즈" maxlength="20"></label></p>
+        <ol class="lineup-list">
+          <li>
+            <label for="away-batter1">타자 정보 입력<input type="text" id="away-batter1" placeholder="선수 이름" value="서건창" maxlength="5"></label>
+            <label for="away-avg1"><input type="text" id="away-avg1" placeholder="타율" value="0.300" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="away-batter2">타자 정보 입력<input type="text" id="away-batter2" placeholder="선수 이름" value="김하성" maxlength="5"></label>
+            <label for="away-avg2"><input type="text" id="away-avg2" placeholder="타율" value="0.307" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="away-batter3">타자 정보 입력<input type="text" id="away-batter3" placeholder="선수 이름" value="이정후" maxlength="5"></label>
+            <label for="away-avg3"><input type="text" id="away-avg3" placeholder="타율" value="0.336" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="away-batter4">타자 정보 입력<input type="text" id="away-batter4" placeholder="선수 이름" value="박병호" maxlength="5"></label>
+            <label for="away-avg4"><input type="text" id="away-avg4" placeholder="타율" value="0.280" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="away-batter5">타자 정보 입력<input type="text" id="away-batter5" placeholder="선수 이름" value="샌즈" maxlength="5"></label>
+            <label for="away-avg5"><input type="text" id="away-avg5" placeholder="타율" value="0.305" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="away-batter6">타자 정보 입력<input type="text" id="away-batter6" placeholder="선수 이름" value="송성문" maxlength="5"></label>
+            <label for="away-avg6"><input type="text" id="away-avg6" placeholder="타율" value="0.227" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="away-batter7">타자 정보 입력<input type="text" id="away-batter7" placeholder="선수 이름" value="이지영" maxlength="5"></label>
+            <label for="away-avg7"><input type="text" id="away-avg7" placeholder="타율" value="0.282" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="away-batter8">타자 정보 입력<input type="text" id="away-batter8" placeholder="선수 이름" value="김혜성" maxlength="5"></label>
+            <label for="away-avg8"><input type="text" id="away-avg8" placeholder="타율" value="0.276" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="away-batter9">타자 정보 입력<input type="text" id="away-batter9" placeholder="선수 이름" value="박정음" maxlength="5"></label>
+            <label for="away-avg9"><input type="text" id="away-avg9" placeholder="타율" value="0.197" maxlength="5"></label>
+          </li>
+        </ol>
+      </div>
+
+      <div class="lineup home">
+        <p><label for="home-team">홈팀 이름을 입력하세요<input type="text" id="home-team" value="두산 베어스" maxlength="20"></label></p>
+        <ol class="lineup-list">
+          <li>
+            <label for="home-batter1">타자 정보 입력<input type="text" id="home-batter1" placeholder="선수 이름" value="박건우" maxlength="5"></label>
+            <label for="home-avg1"><input type="text" id="home-avg1" placeholder="타율" value="0.319" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="home-batter2">타자 정보 입력<input type="text" id="home-batter2" placeholder="선수 이름" value="정수빈" maxlength="5"></label>
+            <label for="home-avg2"><input type="text" id="home-avg2" placeholder="타율" value="0.265" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="home-batter3">타자 정보 입력<input type="text" id="home-batter3" placeholder="선수 이름" value="오재일" maxlength="5"></label>
+            <label for="home-avg3"><input type="text" id="home-avg3" placeholder="타율" value="0.293" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="home-batter4">타자 정보 입력<input type="text" id="home-batter4" placeholder="선수 이름" value="김재환" maxlength="5"></label>
+            <label for="home-avg4"><input type="text" id="home-avg4" placeholder="타율" value="0.283" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="home-batter5">타자 정보 입력<input type="text" id="home-batter5" placeholder="선수 이름" value="페르난데스" maxlength="5"></label>
+            <label for="home-avg5"><input type="text" id="home-avg5" placeholder="타율" value="0.344" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="home-batter6">타자 정보 입력<input type="text" id="home-batter6" placeholder="선수 이름" value="김재호" maxlength="5"></label>
+            <label for="home-avg6"><input type="text" id="home-avg6" placeholder="타율" value="0.268" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="home-batter7">타자 정보 입력<input type="text" id="home-batter7" placeholder="선수 이름" value="박세혁" maxlength="5"></label>
+            <label for="home-avg7"><input type="text" id="home-avg7" placeholder="타율" value="0.279" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="home-batter8">타자 정보 입력<input type="text" id="home-batter8" placeholder="선수 이름" value="허경민" maxlength="5"></label>
+            <label for="home-avg8"><input type="text" id="home-avg8" placeholder="타율" value="0.288" maxlength="5"></label>
+          </li>
+          <li>
+            <label for="home-batter9">타자 정보 입력<input type="text" id="home-batter9" placeholder="선수 이름" value="오재원" maxlength="5"></label>
+            <label for="home-avg9"><input type="text" id="home-avg9" placeholder="타율" value="0.164" maxlength="5"></label>
+          </li>
+        </ol>
+      </div>
+
+      <div class="btn">
+        <button type="button" id="btn-lineup-submit">라인업 제출</button>
+      </div>
     </div>
 
-    <div class="game-info"></div>
+    <div class="lineup-check">
+      <p>2. 라인업 확인</p>
+      <div class="lineup away">
+        <p class="team-name"></p>
+        <ol class="lineup-list">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+      </div>
 
-    <div class="game-board">
-      <p class="ball">
-        <abbr title="ball">B</abbr>
-        <span class="count">
-          <span></span>
-          <span></span>
-          <span></span>
-        </span>
-      </p>
-      <p class="strike">
-        <abbr title="strike">S</abbr>
-        <span class="count">
-          <span></span>
-          <span></span>
-        </span>
-      </p>
-      <p class="out">
-        <abbr title="out">O</abbr>
-        <span class="count">
-          <span></span>
-          <span></span>
-        </span>
-      </p>
+      <div class="lineup home">
+        <p class="team-name"></p>
+        <ol class="lineup-list">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ol>
+      </div>
     </div>
-
   </div>
 
+  <script src="./js/jquery-1.8.3.min.js"></script>
   <script src="./js/baseball.js"></script>
 </body>
 

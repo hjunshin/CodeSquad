@@ -4,6 +4,7 @@ html, body {
   color: #000;
   font-family: "맑은 고딕", "Malgun Gothic", "Apple SD Gothic Neo", AppleGothic, sans-serif;
   font-size: 14px;
+  background: #000;
 }
 
 dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, button, textarea, p, blockquote, tbody, tfoot, thead, th, td {
@@ -16,6 +17,10 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: normal;
 }
 
+ul, ol {
+  list-style: none;
+}
+
 img {
   border: 0;
   vertical-align: top;
@@ -24,6 +29,7 @@ img {
 input {
   margin: 0;
   padding: 0;
+  vertical-align: top;
 }
 
 button {
@@ -38,101 +44,88 @@ abbr {
 }
 
 .wrap {
-  margin: 100px auto 0;
-  position: relative;
-  min-width: 1100px;
+  margin: 100px auto;
   width: 1100px;
-  height: 500px;
-  border: 1px solid #ccc;
-  overflow: hidden;
-  box-sizing: border-box;
-}
-
-.wrap .cover {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
   background: #fff;
-  z-index: 10;
 }
 
-.wrap .game-title {
-  padding-top: 140px;
-  font-size: 40px;
-  font-weight: bold;
-  text-align: center;
-  line-height: 1;
+.wrap h1 {
+  font-size: 20px;
+  padding: 20px 0 0 20px;
 }
 
-.wrap .game-board {
-  position: absolute;
-  right: 0;
-  top: 0;
-  padding: 20px;
-  width: 400px;
-  height: 100%;
-  color: #fff;
-  background-color: #000;
+.lineup-entry, .lineup-check {
+  font-size: 0;
+}
+
+.lineup-entry>p, .lineup-check>p {
+  margin-top: 20px;
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+.lineup {
+  display: inline-block;
+  padding: 40px;
+  width: 50%;
+  font-size: 20px;
   line-height: 1;
   box-sizing: border-box;
 }
 
-.wrap .game-board abbr {
-  display: inline-block;
-  width: 50px;
-  font-size: 40px;
-  line-height: 40px;
+.lineup input {
+  margin-left: 20px;
+  padding: 0 10px;
+  height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
 }
 
-.wrap .game-board>p {
+.lineup p input {
+  margin-left: 20px;
+}
+
+.lineup-list {
+  margin-top: 40px;
+  counter-reset: counter;
+}
+
+.lineup-list li {
   margin-top: 20px;
-  font-size: 0;
-  font-weight: bold;
+  counter-increment: counter;
 }
 
-.wrap .game-board>p:first-child {
+.lineup-list li:first-child {
   margin-top: 0;
 }
 
-.wrap .game-board .count>span {
-  display: inline-block;
-  margin-left: 10px;
-  width: 40px;
-  height: 40px;
-  background: #fff;
-  border-radius: 50%;
-  vertical-align: top;
+.lineup-list li::before {
+  content: counter(counter) "번 ";
 }
 
-.wrap .game-board .count>span:first-child {
-  margin-left: 0;
+.lineup-list li input[type=text] {
+  width: 100px;
 }
 
-.wrap .game-board .ball .count>.on {
-  background: #69bd46;
+.lineup p, .lineup-list li {
+  line-height: 30px;
 }
 
-.wrap .game-board .strike .count>.on {
-  background: #f6ec13;
+.lineup-check {
+  display: none;
 }
 
-.wrap .game-board .out .count>.on {
-  background: #ee1f25;
+.btn {
+  padding-bottom:40px;
+  text-align: center;
 }
 
-#btn-game-start {
-  position: absolute;
-  left: 50%;
-  bottom: 50px;
-  margin-left: -75px;
+#btn-lineup-submit {
   padding: 20px;
   width: 150px;
-  color: #fff;
   font-size: 20px;
   font-weight: bold;
   border-radius: 15px;
-  background: #0e5e14;
+  background: #ccc;
   box-sizing: border-box;
 }
