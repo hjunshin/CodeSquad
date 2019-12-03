@@ -59,7 +59,6 @@ abbr {
 }
 
 .lineup-entry>p, .lineup-check>p, .game-info>p{
-  margin-top: 20px;
   padding-left: 20px;
   font-size: 14px;
 }
@@ -132,6 +131,11 @@ abbr {
   font-weight: bold;
   border-radius: 15px;
   box-sizing: border-box;
+}
+
+.score {
+  color: #ff0000;
+  font-weight: bold;
 }
 
 #btn-lineup-submit {

@@ -9,6 +9,7 @@ $(function() {
       strike: 0,
       ball: 0,
       out: 0,
+      order: 0,
       inning: 0,
       score: 0
     },
@@ -20,6 +21,7 @@ $(function() {
       strike: 0,
       ball: 0,
       out: 0,
+      order: 0,
       inning: 0,
       score: 0
     }
@@ -114,29 +116,198 @@ $(function() {
     $(".lineup-check").hide();
     $(".game-info").show();
 
-    $(".game-info").append('<p>' + teamData.away.name + ' VS ' + teamData.home.name +'</p>');
-    awayInning();
+    $(".game-info").append('<p>' + teamData.away.name + ' VS ' + teamData.home.name + '</p><br>');
+    inningAway();
   });
 
-  function awayInning() {
-    teamData.away.inning = ++teamData.away.inning;
-
-    $(".game-info").append('<p>' + teamData.away.inning + '회초 ' + teamData.away.name + '공격</p>');
+  function inningAway() {
+    teamData.away.inning++;
+    $(".game-info").append('<p>' + teamData.away.inning + '회초 ' + teamData.away.name + ' 공격</p><br>');
+    batterAway();
   }
 
-  function batterResult(avg) {
+  function inningHome() {
+    teamData.home.inning++;
+    $(".game-info").append('<p>' + teamData.home.inning + '회말 ' + teamData.home.name + ' 공격</p><br>');
+    batterHome();
+  }
+
+  function batterAway() {
+    $(".game-info").append('<p>' + (teamData.away.order + 1) + '번 ' + teamData.away.batter[teamData.away.order] + '</p>');
+    batterResult("away", teamData.away.avg[teamData.away.order]);
+  }
+
+  function batterHome() {
+    $(".game-info").append('<p>' + (teamData.home.order + 1) + '번 ' + teamData.home.batter[teamData.home.order] + '</p>');
+    batterResult("home", teamData.home.avg[teamData.home.order]);
+  }
+
+  function hitResult(team) {
+    $(".game-info").append('<p>안타!</p>');
+    if (team === "away") {
+      hitAway();
+    } else if (team === "home") {
+      hitHome();
+    }
+    printCount(team);
+    nextBetter(team);
+  }
+
+  function hitAway() {
+    teamData.away.hit++;
+    teamData.away.strike = 0;
+    teamData.away.ball = 0;
+    if (teamData.away.hit >= 4) {
+      teamData.away.score++;
+      $(".game-info").append('<p>' + teamData.away.name + ' 1득점!</p>');
+      $(".game-info").append('<p class="score">' + teamData.away.name + ' ' + teamData.away.score + ' : ' + teamData.home.score + ' ' + teamData.home.name + '</p>');
+    }
+  }
+
+  function hitHome() {
+    teamData.home.hit++;
+    teamData.home.strike = 0;
+    teamData.home.ball = 0;
+    if (teamData.home.hit >= 4) {
+      teamData.home.score++;
+      $(".game-info").append('<p>' + teamData.home.name + ' 1득점!</p>');
+      $(".game-info").append('<p class="score">' + teamData.away.name + ' ' + teamData.away.score + ' : ' + teamData.home.score + ' ' + teamData.home.name + '</p>');
+    }
+  }
+
+  function strikeResult(team) {
+    $(".game-info").append('<p>스트라이크!</p>');
+    if (team === "away") {
+      strikeAway(team);
+    } else if (team === "home") {
+      strikeHome(team);
+    }
+  }
+
+  function strikeAway(team) {
+    teamData.away.strike++;
+    if (teamData.away.strike >= 0 && teamData.away.strike < 3) {
+      printCount(team);
+      batterAway();
+    } else if (teamData.away.strike === 3) {
+      outResult(team);
+    }
+  }
+
+  function strikeHome(team) {
+    teamData.home.strike++;
+    if (teamData.home.strike >= 0 && teamData.home.strike < 3) {
+      printCount(team);
+      batterHome();
+    } else if (teamData.home.strike === 3) {
+      outResult(team);
+    }
+  }
+
+  function ballResult(team) {
+    $(".game-info").append('<p>볼!</p>');
+    if (team === "away") {
+      ballAway(team);
+    } else if (team === "home") {
+      ballHome(team);
+    }
+  }
+
+  function ballAway(team) {
+    teamData.away.ball++;
+    if (teamData.away.strike >= 0 && teamData.away.ball < 4) {
+      printCount(team);
+      batterAway();
+    } else if (teamData.away.ball === 4) {
+      hitResult(team);
+    }
+  }
+
+  function ballHome(team) {
+    teamData.home.ball++;
+    if (teamData.home.strike >= 0 && teamData.home.ball < 4) {
+      printCount(team);
+      batterHome();
+    } else if (teamData.home.ball === 4) {
+      hitResult(team);
+    }
+  }
+
+  function outResult(team) {
+    $(".game-info").append('<p>아웃!</p>');
+    if (team === "away") {
+      outAway(team);
+    } else if (team === "home") {
+      outHome(team);
+    }
+    printCount(team);
+    nextBetter(team);
+  }
+
+  function outAway(team) {
+    teamData.away.out++
+    teamData.away.strike = 0;
+    teamData.away.ball = 0;
+    if (teamData.away.out === 3) {
+      teamData.away.out = 0;
+      $(".game-info").append('<p>' + teamData.away.inning + '회초 ' + teamData.away.name + ' 공격 종료</p>');
+      inningHome();
+    }
+  }
+
+  function outHome(team) {
+    teamData.home.out++
+    teamData.home.strike = 0;
+    teamData.home.ball = 0;
+    if (teamData.home.out === 3) {
+      teamData.home.out = 0;
+      $(".game-info").append('<p>' + teamData.home.inning + '회말 ' + teamData.home.name + ' 공격 종료</p>');
+      inningAway();
+    }
+  }
+
+  function nextBetter(team) {
+    if (team === "away") {
+      teamData.away.order++;
+      if (teamData.away.order >= 0 && teamData.away.order < 9) {
+        batterAway();
+      } else if (teamData.away.order === 9) {
+        teamData.away.order = 0;
+        batterAway();
+      }
+    } else if (team === "home") {
+      teamData.home.order++;
+      if (teamData.home.order >= 0 && teamData.home.order < 9) {
+        batterHome();
+      } else if (teamData.home.order === 9) {
+        teamData.home.order = 0;
+        batterHome();
+      }
+    }
+  }
+
+  function printCount(team) {
+    if (team === "away") {
+      $(".game-info").append('<p>' + teamData.away.ball + 'B ' + teamData.away.strike + 'S ' + teamData.away.out + 'O</p><br>');
+    } else if (team === "home") {
+      $(".game-info").append('<p>' + teamData.home.ball + 'B ' + teamData.home.strike + 'S ' + teamData.home.out + 'O</p><br>');
+    }
+  }
+
+  function batterResult(team, avg) {
+    avg = Number(avg);
     var ran = Math.random().toFixed(3);
     var strike = (1 - avg) / 2 - 0.05;
     var ball = (1 - avg) / 2 - 0.05;
     var out = 0.1;
     if (ran > out && ran <= avg) {
-      console.log("안타");
+      hitResult(team);
     } else if (ran > avg && ran <= strike + ball) {
-      console.log("스트라이크");
+      strikeResult(team);
     } else if (ran > strike + ball) {
-      console.log("볼");
+      ballResult(team);
     } else if (ran >= 0 && ran <= out) {
-      console.log("아웃");
+      outResult(team);
     }
   }
 
